@@ -42,8 +42,7 @@ def jogar():
         if tabuleiro_cheio(tabuleiro):
             mostrar_tabuleiro()
             print("Empate!")
-            exit()
-        
+            return
         mostrar_tabuleiro()
 def mostrar_tabuleiro():
     for i in range(0,3):
