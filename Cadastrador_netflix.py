@@ -17,14 +17,48 @@ def listar_clientes(clientes):
         print(f"Nome: {cliente['nome']}, Idade: {cliente['idade']}, CPF: {cliente['cpf']}, Plano: {cliente['plano']}, Meses contratados: {cliente['meses']}, Valor pago: R${cliente['valor_pago']}")
 def buscar_por_nome():
     nome_busca = input("Digite o nome que deseja buscar: ").lower()
-
     encontrou = False
-
     for cliente in clientes:
-        if cliente["nome"].lower() == nome_busca:
+        if nome_busca in cliente["nome"].lower():
             print(f"Nome: {cliente['nome']} | CPF: {cliente['cpf']} | Plano: {cliente['plano']} | Meses contratados: {cliente['meses']} | Valor pago: R${cliente['valor_pago']}")
             encontrou = True
+    if not encontrou:
+        print("Cliente não encontrado.")
+def relatorio_final(clientes,basico,medio,completo,faturamento_total,planos):
+    print(f"Faturamento total: R$ {faturamento_total}")
+    print(f"Quantidade de clientes: {len(clientes)}")
+    print(f"Média de meses contratados: {sum(cliente['meses'] for cliente in clientes) / len(clientes):.2f}")
+    print(f"O plano basico faturou R$ {planos['basico']*sum(cliente['meses'] for cliente in clientes if cliente['plano'] == 'basico'):.2f}")
+    print(f"O plano medio faturou R$ {planos['medio']*sum(cliente['meses'] for cliente in clientes if cliente['plano'] == 'medio'):.2f}")
+    print(f"O plano completo faturou R$ {planos['completo']*sum(cliente['meses'] for cliente in clientes if cliente['plano'] == 'completo'):.2f}")
+    if basico > medio and basico > completo:
+        print("Plano mais vendido: básico")
+    elif medio > basico and medio > completo:
+        print("Plano mais vendido: médio")
+    elif completo > basico and completo > medio:
+        print("Plano mais vendido: completo")
+    else:
+        print("Houve empate entre os planos mais vendidos")
 
+    nome_busca = input("Digite o nome que deseja buscar: ").lower()
+    encontrou = False
+    for cliente in clientes:
+        if nome_busca in cliente["nome"].lower():
+            print(f"Nome: {cliente['nome']} | CPF: {cliente['cpf']} | Plano: {cliente['plano']} | Meses contratados: {cliente['meses']} | Valor pago: R${cliente['valor_pago']}")
+            encontrou = True
+    if not encontrou:
+        print("Cliente não encontrado.")
+def buscar_por_idade():
+    try:
+        idade_busca = int(input("Digite a idade que deseja buscar: "))
+    except ValueError:
+        print("Entrada inválida. Por favor, digite um número inteiro.")
+        return
+    encontrou = False
+    for cliente in clientes:
+        if cliente["idade"] == idade_busca:
+            print(f"Nome: {cliente['nome']} | CPF: {cliente['cpf']} | Idade: {cliente['idade']} | Plano: {cliente['plano']} | Meses contratados: {cliente['meses']} | Valor pago: R${cliente['valor_pago']}")
+            encontrou = True
     if not encontrou:
         print("Cliente não encontrado.")
 #Sistema de cadastro da netflix
@@ -59,23 +93,23 @@ for _ in range (0,repeticoes:=int(input("Digite a quantidade de clientes a serem
         medio += 1
     elif cliente["plano"] == "completo":
         completo += 1
-print(f"Faturamento total: R$ {faturamento_total}")
-print(f"Quantidade de clientes: {len(clientes)}")
-print(f"Media de meses contratados: {faturamento_total/sum(cliente['meses'] for cliente in clientes):.2f}")
-print(f"O plano basico faturou R$ {planos['basico']*sum(cliente['meses'] for cliente in clientes if cliente['plano'] == 'basico'):.2f}")
-print(f"O plano medio faturou R$ {planos['medio']*sum(cliente['meses'] for cliente in clientes if cliente['plano'] == 'medio'):.2f}")
-print(f"O plano completo faturou R$ {planos['completo']*sum(cliente['meses'] for cliente in clientes if cliente['plano'] == 'completo'):.2f}")
-if basico > medio and basico > completo:
-    print("Plano mais vendido: básico")
-elif medio > basico and medio > completo:
-    print("Plano mais vendido: médio")
-elif completo > basico and completo > medio:
-    print("Plano mais vendido: completo")
-else:
-    print("Houve empate entre os planos mais vendidos")
-if input("Deseja listar os clientes? (s/n) ")=="s":
-    listar_clientes(clientes)
-if input("Deseja buscar um cliente por nome? (s/n) ")=="s":
-    buscar_por_nome()
-    print("Busca finalizada.")
+print("1-Gerar relatório final")
+print("2-Listar clientes")
+print("3-Buscar cliente por nome")
+print("4-Buscar cliente por idade")
+print("5-sair")
+while True:
 
+    resposta = input("Digite a opção desejada: ")
+    if resposta == "1":
+        relatorio_final(clientes,basico,medio,completo,faturamento_total,planos) 
+    elif resposta == "2":
+        listar_clientes(clientes)
+    elif resposta == "3":
+        buscar_por_nome()
+    elif resposta == "4":
+        buscar_por_idade()
+    elif resposta == "5":
+        exit()
+    if input("Deseja realizar outra operação? (s/n) ")!="s":
+        exit()

@@ -7,6 +7,11 @@ palpite=int(input("Digite seu palpite: "))
 
 while palpite!=numero:
     control+=1
+    if maximo >= 1:
+        print("Digite um número maior que zero.")
+        break
+    except ValueError:
+        print("Digite um número inteiro válido.")
     if palpite>maximo:
         print("palpite invalido, tente novamente")
     
