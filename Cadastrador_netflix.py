@@ -62,9 +62,9 @@ for _ in range (0,repeticoes:=int(input("Digite a quantidade de clientes a serem
 print(f"Faturamento total: R$ {faturamento_total}")
 print(f"Quantidade de clientes: {len(clientes)}")
 print(f"Media de meses contratados: {faturamento_total/sum(cliente['meses'] for cliente in clientes):.2f}")
-print(f"O plano basico faturou R$ {basico*planos['basico']:.2f}")
-print(f"O plano medio faturou R$ {medio*planos['medio']:.2f}")
-print(f"O plano completo faturou R$ {completo*planos['completo']:.2f}")
+print(f"O plano basico faturou R$ {100planos['basico']*sum(cliente['meses'] for cliente in clientes if cliente['plano'] == 'basico'):.2f}")
+print(f"O plano medio faturou R$ {planos['medio']*sum(cliente['meses'] for cliente in clientes if cliente['plano'] == 'medio'):.2f}")
+print(f"O plano completo faturou R$ {planos['completo']*sum(cliente['meses'] for cliente in clientes if cliente['plano'] == 'completo'):.2f}")
 if basico > medio and basico > completo:
     print("Plano mais vendido: básico")
 elif medio > basico and medio > completo:
@@ -77,3 +77,5 @@ if input("Deseja listar os clientes? (s/n) ")=="s":
     listar_clientes(clientes)
 if input("Deseja buscar um cliente por nome? (s/n) ")=="s":
     buscar_por_nome()
+    print("Busca finalizada.")
+
