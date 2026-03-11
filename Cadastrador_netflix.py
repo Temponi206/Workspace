@@ -53,7 +53,6 @@ def buscar_por_idade():
         idade_busca = int(input("Digite a idade que deseja buscar: "))
     except ValueError:
         print("Entrada inválida. Por favor, digite um número inteiro.")
-        return
     encontrou = False
     for cliente in clientes:
         if cliente["idade"] == idade_busca:
@@ -73,9 +72,7 @@ primeiros_nomes = [
     "Ursula", "Vinícius", "Wesley", "Xênia", "Yasmin", "Zeca", "Amanda", "Beatriz", "Caio", "Diego",
     "Elaine", "Fernanda", "Gustavo", "Helena", "Igor", "Juliana", "Karen", "Leonardo", "Melissa", "Natália",
     "Otávio", "Paula", "Renato", "Samuel", "Talita", "Valentina", "William", "Bianca", "Cecília", "Murilo"]
-
 planos={"basico":22,"medio":40,"completo":60}
-
 for _ in range (0,repeticoes:=int(input("Digite a quantidade de clientes a serem cadastrados: "))):
     cliente={}
     cliente["nome"] = choice(primeiros_nomes)
@@ -99,7 +96,6 @@ print("3-Buscar cliente por nome")
 print("4-Buscar cliente por idade")
 print("5-sair")
 while True:
-
     resposta = input("Digite a opção desejada: ")
     if resposta == "1":
         relatorio_final(clientes,basico,medio,completo,faturamento_total,planos) 

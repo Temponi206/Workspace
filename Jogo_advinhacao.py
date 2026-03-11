@@ -9,7 +9,7 @@ while palpite!=numero:
     control+=1
     if maximo >= 1:
         print("Digite um número maior que zero.")
-        break
+        break   
     except ValueError:
         print("Digite um número inteiro válido.")
     if palpite>maximo:
