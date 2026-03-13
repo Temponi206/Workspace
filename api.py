@@ -19,6 +19,9 @@ for character in data["results"]:
         image_response = requests.get(image_url)
         image = Image.open(BytesIO(image_response.content))
         image.show()
+if not encontrou:
+    print("Personagem não encontrado.")
+
 
 
     
